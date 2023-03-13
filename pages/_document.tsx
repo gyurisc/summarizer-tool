@@ -21,7 +21,7 @@ export default function Document() {
         <meta property="og:image" content={ogimage} />
         <meta name="twitter:image" content={ogimage} />
       </Head>
-      <body className="bg-black text-white">
+      <body>
         <Main />
         <NextScript />
       </body>
