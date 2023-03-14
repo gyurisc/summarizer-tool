@@ -69,6 +69,18 @@ const Home: NextPage = () => {
             Generate Summary
           </button>
         )}
+        {busy && (
+          <button
+            className="bg-black text-white px-6 py-3 rounded-md mt-5 hover:bg-gray-900 transition-colors"
+            disabled
+          >
+            Generating...
+          </button>
+        )}
+        <hr className="w-full my-10" />
+        <div className="max-w-xl w-full">
+          HERE COMES THE GENERATED CONTENT
+        </div>
       </main>
       <Footer />
     </div>
