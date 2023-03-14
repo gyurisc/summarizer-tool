@@ -5,10 +5,11 @@ import Footer from "@/components/Footer";
 import Github from "@/components/GitHub";
 import { NextPage } from "next";
 import { useState, useRef } from "react";
+import { text } from "stream/consumers";
 
 const Home: NextPage = () => {
 
-  const [input, setInput] = useState("");
+  const [textInput, setTextInput] = useState("");
   const [result, setResult] = useState("");
 
   const [busy, setBusy] = useState(false);
@@ -21,6 +22,12 @@ const Home: NextPage = () => {
 
   async function copyToClipboard() {
     navigator.clipboard.writeText(result);
+  }
+
+  async function onSubmit(event) {
+    event.preventDefault();
+
+    await generateEmail(businessInput, tone);
   }
 
   return (
@@ -44,7 +51,21 @@ const Home: NextPage = () => {
           Generate your meeting summaries and todos using chatGPT
         </h1>
         <p className="text-slate-500 mt-5">Countless summaries generated so far.</p>
-
+        <form onSubmit={onSubmit}>
+          <div className="flex flex-wrap -mx-2">
+            <div className="mb-3 w-full px-2">
+              <input
+                className="w-full p-4 text-xs bg-gray-50 outline-none rounded"
+                type="text"
+                placeholder="Type your message"
+                autocomplete="off"
+                name="business"
+                value={textInput}
+                onChange={(e) => setTextInput(e.target.value)}
+              />
+            </div>
+          </div>
+        </form>
       </main>
       <Footer />
     </div>
