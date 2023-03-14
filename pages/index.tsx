@@ -14,7 +14,10 @@ const Home: NextPage = () => {
 
   const [busy, setBusy] = useState(false);
 
-  async function generateSummary() {
+  async function generateSummary(event: any) {
+    event.preventDefault();
+
+    setResult("");
     setBusy(true);
 
     setBusy(false);
@@ -22,13 +25,6 @@ const Home: NextPage = () => {
 
   async function copyToClipboard() {
     navigator.clipboard.writeText(result);
-  }
-
-  async function onSubmit(event: any) {
-    event.preventDefault();
-
-    alert("Summarize this " + textInput);
-    await generateSummary(businessInput, tone);
   }
 
   return (
@@ -65,6 +61,14 @@ const Home: NextPage = () => {
             onChange={(e) => setTextInput(e.target.value)}
           />
         </div>
+        {!busy && (
+          <button
+            className="bg-black text-white px-6 py-3 rounded-md mt-5 hover:bg-gray-900 transition-colors"
+            onClick={(e) => generateSummary(e)}
+          >
+            Generate Summary
+          </button>
+        )}
       </main>
       <Footer />
     </div>
