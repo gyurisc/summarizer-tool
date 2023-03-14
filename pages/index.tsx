@@ -24,10 +24,11 @@ const Home: NextPage = () => {
     navigator.clipboard.writeText(result);
   }
 
-  async function onSubmit(event) {
+  async function onSubmit(event: any) {
     event.preventDefault();
 
-    await generateEmail(businessInput, tone);
+    alert("Summarize this " + textInput);
+    await generateSummary(businessInput, tone);
   }
 
   return (
@@ -51,21 +52,19 @@ const Home: NextPage = () => {
           Generate your meeting summaries and todos using chatGPT
         </h1>
         <p className="text-slate-500 mt-5">Countless summaries generated so far.</p>
-        <form onSubmit={onSubmit}>
-          <div className="flex flex-wrap -mx-2">
-            <div className="mb-3 w-full px-2">
-              <input
-                className="w-full p-4 text-xs bg-gray-50 outline-none rounded"
-                type="text"
-                placeholder="Type your message"
-                autocomplete="off"
-                name="business"
-                value={textInput}
-                onChange={(e) => setTextInput(e.target.value)}
-              />
-            </div>
+        <div className="max-w-xl w-full">
+          <div className="flex mt-10 items-center space-x-3">
+            <p className="text-left font-medium">Copy the meeting transcript that needs to be summarize</p>
           </div>
-        </form>
+          <textarea
+            className="w-full rounded-md border border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
+
+            placeholder="Paste your meeting or text that you want to summarize"
+            rows={4}
+            value={textInput}
+            onChange={(e) => setTextInput(e.target.value)}
+          />
+        </div>
       </main>
       <Footer />
     </div>
