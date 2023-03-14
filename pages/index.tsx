@@ -8,6 +8,20 @@ import { useState, useRef } from "react";
 
 const Home: NextPage = () => {
 
+  const [input, setInput] = useState("");
+  const [result, setResult] = useState("");
+
+  const [busy, setBusy] = useState(false);
+
+  async function generateSummary() {
+    setBusy(true);
+
+    setBusy(false);
+  }
+
+  async function copyToClipboard() {
+    navigator.clipboard.writeText(result);
+  }
 
   return (
     <div className="mx-auto flex min-h-screen max-w-5xl flex-col pt-8 sm:pt-12">
