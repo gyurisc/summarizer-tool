@@ -20,6 +20,14 @@ const Home: NextPage = () => {
     setResult("");
     setBusy(true);
 
+    const response = await fetch("/api/summarize", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({message: textInput}),
+    });
+    
     setBusy(false);
   }
 
