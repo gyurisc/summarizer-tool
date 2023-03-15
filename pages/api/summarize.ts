@@ -21,7 +21,7 @@ export default async function handler(
         model: "text-davinci-003",
         prompt: generatePrompt(req.body.message),
         temperature: 0.7,
-        max_tokens: 1000,
+        max_tokens: 10000,
     });
 
   res.status(200).json({ result: completion.data.choices[0].text });

@@ -27,7 +27,11 @@ const Home: NextPage = () => {
       },
       body: JSON.stringify({message: textInput}),
     });
+
+    const data = await response.json();
+    setResult(data.result);
     
+
     setBusy(false);
   }
 
