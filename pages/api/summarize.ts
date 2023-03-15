@@ -24,7 +24,9 @@ export default async function handler(
         max_tokens: 10000,
     });
 
-  res.status(200).json({ result: completion.data.choices[0].text });
+    console.log(completion);
+    
+    res.status(200).json({ result: completion.data.choices[0].text });
 }
 
 
