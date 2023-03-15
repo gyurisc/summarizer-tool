@@ -27,15 +27,12 @@ const Home: NextPage = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({message: textInput}),
+      body: JSON.stringify({ message: textInput }),
     });
 
     const data = await response.json();
 
-    console.log('end call', data);
     setResult(data.result);
-
-
     setBusy(false);
   }
 
@@ -95,7 +92,13 @@ const Home: NextPage = () => {
         )}
         <hr className="w-full my-10" />
         <div className="max-w-xl w-full">
-          HERE COMES THE GENERATED CONTENT
+          {result && (
+            <>
+              <p>
+                {result}
+              </p>
+            </>
+          )}
         </div>
       </main>
       <Footer />
