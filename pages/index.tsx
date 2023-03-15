@@ -20,6 +20,8 @@ const Home: NextPage = () => {
     setResult("");
     setBusy(true);
 
+    console.log('start call');
+
     const response = await fetch("/api/summarize", {
       method: "POST",
       headers: {
@@ -29,8 +31,10 @@ const Home: NextPage = () => {
     });
 
     const data = await response.json();
+
+    console.log('end call', data);
     setResult(data.result);
-    
+
 
     setBusy(false);
   }

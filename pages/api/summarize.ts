@@ -6,6 +6,7 @@ const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
+console.log(process.env.OPENAI_API_KEY);
 const openai = new OpenAIApi(configuration);
 
 type Data = {
@@ -26,6 +27,7 @@ export default async function handler(
 
     console.log(completion);
     
+    console.log(completion.data.error);
     res.status(200).json({ result: completion.data.choices[0].text });
 }
 
