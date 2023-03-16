@@ -5,6 +5,8 @@ import Footer from "@/components/Footer";
 import Github from "@/components/GitHub";
 import { NextPage } from "next";
 import { useState, useRef } from "react";
+import LoadingDots from "../components/LoadingDots";
+
 import { text } from "stream/consumers";
 
 const Home: NextPage = () => {
@@ -87,7 +89,7 @@ const Home: NextPage = () => {
             className="bg-black text-white px-6 py-3 rounded-md mt-5 hover:bg-gray-900 transition-colors"
             disabled
           >
-            Generating...
+            <LoadingDots color="white" style="large" />
           </button>
         )}
         <hr className="w-full my-10" />
