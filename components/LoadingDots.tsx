@@ -1,4 +1,4 @@
-import styles from "../styles/loadingDots.module.css";
+import styles from "../styles/loading-dots.module.css";
 
 // source: https://github.com/Nutlope/twitterbio
 
@@ -9,11 +9,14 @@ const LoadingDots = ({
     color: string;
     style: string;
 }) => {
-    <span className={style == "small" ? styles.loading2 : styles.loading}>
-        <span style={{ backgroundColor: color }} />
-        <span style={{ backgroundColor: color }} />
-        <span style={{ backgroundColor: color }} />
-    </span>
+
+    return (
+        <span className={style == "small" ? styles.loading2 : styles.loading}>
+            <span style={{ backgroundColor: color }} />
+            <span style={{ backgroundColor: color }} />
+            <span style={{ backgroundColor: color }} />
+        </span>
+    )
 }
 
 export default LoadingDots;
