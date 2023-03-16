@@ -2,11 +2,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Configuration, OpenAIApi } from "openai";
 
+
+if (!process.env.OPENAI_API_KEY) {
+  throw new Error("Missing env var from OpenAI");
+}
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-console.log(process.env.OPENAI_API_KEY);
+
 const openai = new OpenAIApi(configuration);
 
 type Data = {
@@ -18,14 +23,23 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
 
-  const completion = await openai.createCompletion({
-    model: "text-davinci-003",
-    prompt: generatePrompt(req.body.message),
-    temperature: 0.7,
-    max_tokens: 1000,
-  });
+  try {
+    const completion = await openai.createCompletion({
+      model: "text-davinci-003",
+      prompt: generatePrompt(req.body.message),
+      temperature: 0.7,
+      top_p: 1,
+      frequency_penalty: 0,
+      presence_penalty: 0,
+      max_tokens: 800,
+      n: 1,
+    });
 
-  res.status(200).json({ result: completion.data.choices[0].text });
+    return res.status(200).json({ result: completion.data.choices[0].text });
+  }
+  catch (e) {
+    console.log(e);
+  }
 }
 
 
