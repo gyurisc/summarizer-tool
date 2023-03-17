@@ -44,6 +44,6 @@ export default async function handler(
 
 
 function generatePrompt(message: string) {
-  return `Pretend you are a virtual assistant. Summarize this meeting transcript in alist. Provide key actions at the end. Use full senteneces and professional language. 
+  return `Pretend you are a virtual assistant. Summarize this meeting transcript. Provide key actions at the end. Use full senteneces and professional language. 
     The meeting transcript is: ${message}.`;
 }
