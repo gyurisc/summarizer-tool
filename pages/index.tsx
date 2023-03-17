@@ -70,7 +70,7 @@ const Home: NextPage = () => {
             <p className="text-left font-medium">Copy the meeting transcript that needs to be summarize</p>
           </div>
           <textarea
-            className="w-full rounded-md border border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
+            className="w-full rounded-md border border-gray-300 shadow-sm p-4 focus:border-black focus:ring-black my-5"
 
             placeholder="Paste your meeting or text that you want to summarize"
             rows={4}
@@ -98,15 +98,17 @@ const Home: NextPage = () => {
         <div className="max-w-xl w-full">
           {result && (
             <>
-              <p>
+              <p className="text-left">
                 <FormattedText text={result} />
-                <button
-                  type="button"
-                  onClick={() => copyToClipboard()}>
-                  <span className="sr-only">Copy to Clipboard</span>
-                  <ClipboardIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
-                </button>
+
               </p>
+              <button
+                type="button"
+                className="text-gray-400 hover:text-gray-500"
+                onClick={() => copyToClipboard()}>
+                <ClipboardIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+                <span className="sr-only">Copy to Clipboard</span>
+              </button>
             </>
           )}
         </div>
