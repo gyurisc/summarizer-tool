@@ -6,8 +6,10 @@ import Github from "@/components/GitHub";
 import { NextPage } from "next";
 import { useState, useRef } from "react";
 import LoadingDots from "../components/LoadingDots";
+import { ClipboardIcon } from '@heroicons/react/24/outline'
 
 import { text } from "stream/consumers";
+import FormattedText from "@/components/FormattedText";
 
 const Home: NextPage = () => {
 
@@ -97,7 +99,13 @@ const Home: NextPage = () => {
           {result && (
             <>
               <p>
-                {result}
+                <FormattedText text={result} />
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard()}>
+                  <span className="sr-only">Copy to Clipboard</span>
+                  <ClipboardIcon className="h-6 w-6 text-gray-400" aria-hidden="true" />
+                </button>
               </p>
             </>
           )}
