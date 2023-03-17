@@ -53,11 +53,23 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
                             return;
                         }
 
+                        const queue = encoder.encode(text);
+                        controller.enqueue(queue);
+                        counter++;
+
                     } catch (e) {
                         // parse error 
                         controller.error(e);
                     }
                 }
+            }
+
+            // stream response (SSE) from OpenAI may be fragmented into multiple chunks
+            // this ensures we properly read chunks and invoke an event for each SSE event stream
+            const parser = createParser(onParse);
+            // https://web.dev/streams/#asynchronous-iteration
+            for await (const chunk of res.body as any) {
+                parser.feed(decoder.decode(chunk));
             }
         },
     });
